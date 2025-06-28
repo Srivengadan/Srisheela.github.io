@@ -1,7 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="ta">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sri 💍 Sheela</title>
   <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -20,40 +22,69 @@
     }
     h1 {
       font-family: 'Tangerine', cursive;
-      font-size: 64px;
+      font-size: 8vw;
       color: #990033;
-      margin-top: 40px;
+      margin: 40px 20px 20px;
       animation: fadeIn 2s ease-in;
     }
     p {
-      font-size: 22px;
-      max-width: 800px;
+      font-size: 4vw;
+      max-width: 90%;
       margin: 20px auto;
       line-height: 1.6;
       animation: fadeIn 4s ease-in-out;
     }
     .footer {
-      margin-top: 50px;
-      font-size: 20px;
+      margin-top: 40px;
+      font-size: 3.5vw;
       color: #b30059;
       animation: fadeIn 5s ease-in-out;
     }
     .emoji {
-      font-size: 60px;
+      font-size: 10vw;
       margin-top: 30px;
     }
     .garland {
       width: 100%;
       height: auto;
     }
+    .play-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 4vw;
+      background-color: #ffccd5;
+      color: #800000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    @media (min-width: 768px) {
+      h1 { font-size: 64px; }
+      p { font-size: 22px; }
+      .footer { font-size: 20px; }
+      .emoji { font-size: 60px; }
+      .play-button { font-size: 18px; }
+    }
   </style>
 </head>
 <body>
-  <!-- Background music -->
-  <audio autoplay loop>
+
+  <audio id="bg-music" loop>
     <source src="blue.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
+
+  <button class="play-button" onclick="playMusic()">💖 Tap to Play Music</button>
+
+  <script>
+    function playMusic() {
+      const audio = document.getElementById('bg-music');
+      audio.volume = 0.3;
+      audio.play();
+    }
+  </script>
+
+  <img class="garland" src="garland_top.png" alt="Garland Decoration">
 
   <div class="emoji">💞💍💞</div>
 
