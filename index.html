@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Something Special Awaits... 💖</title>
+  <title>Something Special is Coming... 💖</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -20,10 +20,30 @@
       align-items: center;
     }
 
+    .sparkles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .sparkle {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      animation: sparkle 3s infinite ease-in-out;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.5rem;
-      margin-bottom: 10px;
+      font-size: 4rem;
+      margin-bottom: 20px;
       color: #fff;
       text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
       z-index: 3;
@@ -31,9 +51,9 @@
     }
 
     .countdown {
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight: 600;
-      margin: 10px 0 30px;
+      margin: 30px 0;
       color: #ffeb3b;
       text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
       z-index: 3;
@@ -41,202 +61,153 @@
     }
 
     .gift-container {
-      perspective: 1000px;
+      margin: 50px 0;
+      z-index: 3;
+      position: relative;
     }
 
     .gift-box {
       width: 200px;
       height: 200px;
+      background: linear-gradient(45deg, #e91e63, #ff5722);
+      border-radius: 20px;
       position: relative;
-      transform-style: preserve-3d;
-      transform: rotateX(15deg) rotateY(15deg);
-      animation: rotateGift 8s linear infinite;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      margin: 0 auto;
+      animation: revolve 3s linear infinite;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.05);
+    }
+
+    .gift-box.shake {
+      animation: shake 0.5s infinite;
       cursor: pointer;
     }
 
-    @keyframes rotateGift {
-      from { transform: rotateX(10deg) rotateY(0); }
-      to { transform: rotateX(10deg) rotateY(360deg); }
+    @keyframes revolve {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
     }
 
-    .face {
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: #dc2626;
-      border: 2px solid #a10000;
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px) rotate(-1deg); }
+      75% { transform: translateX(5px) rotate(1deg); }
     }
 
-    .front  { transform: translateZ(100px); }
-    .back   { transform: rotateY(180deg) translateZ(100px); }
-    .right  { transform: rotateY(90deg) translateZ(100px); }
-    .left   { transform: rotateY(-90deg) translateZ(100px); }
-    .top    { transform: rotateX(90deg) translateZ(100px); }
-    .bottom { transform: rotateX(-90deg) translateZ(100px); }
-
-    /* Ribbons - Horizontal and Vertical Wrapping */
-    .ribbon-h, .ribbon-v {
-      position: absolute;
-      background: #fbbf24;
-      box-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
-      animation: shimmer 2s linear infinite;
-    }
-
-    /* Horizontal */
-    .ribbon-h {
-      height: 20px;
-      width: 200px;
-      top: 90px;
-      left: 0;
-    }
-
-    /* Vertical */
-    .ribbon-v {
-      width: 20px;
-      height: 200px;
-      top: 0;
-      left: 90px;
-    }
-
-    .front .ribbon-h, .front .ribbon-v { background: #fcd34d; }
-    .back .ribbon-h, .back .ribbon-v { background: #facc15; }
-    .left .ribbon-h, .left .ribbon-v { background: #fbbf24; }
-    .right .ribbon-h, .right .ribbon-v { background: #f59e0b; }
-    .top .ribbon-h, .top .ribbon-v { background: #fcd34d; }
-    .bottom .ribbon-h, .bottom .ribbon-v { background: #fbbf24; }
-
-    /* Bow */
-    .bow {
-      position: absolute;
-      top: -50px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 60px;
-      z-index: 10;
-      filter: drop-shadow(0 0 8px gold) drop-shadow(0 0 20px #fff);
-    }
-
-    .bow-center {
+    .ribbon-horizontal {
       position: absolute;
       top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 28px;
-      height: 45px;
-      background: #d97706;
-      border-radius: 8px;
-      box-shadow:
-        0 8px 20px rgba(0,0,0,0.5),
-        inset 4px 4px 10px rgba(255,255,255,0.4),
-        inset -4px -4px 10px rgba(0,0,0,0.4);
+      left: 0;
+      right: 0;
+      height: 30px;
+      background: linear-gradient(45deg, #ffd700, #ffeb3b);
+      transform: translateY(-50%);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
 
-    .bow-left, .bow-right {
+    .ribbon-vertical {
       position: absolute;
-      top: 8px;
-      width: 42px;
-      height: 35px;
-      background: #fbbf24;
-      border-radius: 50% 25% 50% 50%;
-      box-shadow:
-        0 10px 25px rgba(0,0,0,0.4),
-        inset 3px 3px 12px rgba(255,255,255,0.5),
-        inset -3px -3px 12px rgba(0,0,0,0.3);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 30px;
+      background: linear-gradient(45deg, #ffd700, #ffeb3b);
+      transform: translateX(-50%);
+      box-shadow: 2px 0 10px rgba(0,0,0,0.2);
     }
 
-    .bow-left {
-      left: -10px;
-      transform: rotate(-20deg);
+    .bow {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 40px;
+      background: linear-gradient(45deg, #ffd700, #ffeb3b);
+      border-radius: 50px 50px 0 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
-    .bow-right {
-      right: -10px;
-      transform: rotate(20deg) scaleX(-1);
+    .bow::before,
+    .bow::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 25px;
+      height: 25px;
+      background: linear-gradient(45deg, #ffd700, #ffeb3b);
+      border-radius: 50%;
     }
 
-    /* Shimmer animation */
-    @keyframes shimmer {
-      0% { filter: brightness(1); }
-      50% { filter: brightness(1.2); }
-      100% { filter: brightness(1); }
+    .bow::before {
+      left: -5px;
+      transform: rotate(-15deg);
+    }
+
+    .bow::after {
+      right: -5px;
+      transform: rotate(15deg);
     }
 
     .message {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       margin-top: 30px;
       color: #fff;
       opacity: 0.9;
       z-index: 3;
+      position: relative;
       font-weight: 300;
     }
 
-    @media (max-width: 600px) {
-      .gift-box {
-        width: 150px;
-        height: 150px;
-      }
-      .face {
-        width: 150px;
-        height: 150px;
-      }
-      .ribbon-h { width: 150px; top: 65px; }
-      .ribbon-v { height: 150px; left: 65px; }
-      .bow {
-        width: 80px;
-        height: 50px;
-        top: -40px;
-      }
+    .time-up {
+      font-size: 2rem;
+      color: #4caf50;
+      font-weight: 600;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      .countdown { font-size: 1.8rem; }
+      .gift-box { width: 150px; height: 150px; }
+      .message { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
 
+  <div class="sparkles"></div>
+
   <h1>Something Special Awaits... 💖</h1>
-  <div class="countdown" id="countdown">Loading...</div>
+
+  <div class="countdown" id="countdown">
+    Loading...
+  </div>
 
   <div class="gift-container">
     <div class="gift-box" id="giftBox" onclick="openGift()">
-      <!-- 6 Faces -->
-      <div class="face front">
-        <div class="ribbon-h"></div>
-        <div class="ribbon-v"></div>
-      </div>
-      <div class="face back">
-        <div class="ribbon-h"></div>
-        <div class="ribbon-v"></div>
-      </div>
-      <div class="face left">
-        <div class="ribbon-h"></div>
-        <div class="ribbon-v"></div>
-      </div>
-      <div class="face right">
-        <div class="ribbon-h"></div>
-        <div class="ribbon-v"></div>
-      </div>
-      <div class="face top">
-        <div class="ribbon-h"></div>
-        <div class="ribbon-v"></div>
-      </div>
-      <div class="face bottom">
-        <div class="ribbon-h"></div>
-        <div class="ribbon-v"></div>
-      </div>
-
-      <!-- Bow -->
-      <div class="bow">
-        <div class="bow-left"></div>
-        <div class="bow-center"></div>
-        <div class="bow-right"></div>
-      </div>
+      <div class="ribbon-horizontal"></div>
+      <div class="ribbon-vertical"></div>
+      <div class="bow"></div>
     </div>
   </div>
 
   <div class="message" id="message">
-    Your special day is almost here, Paapa kutty! 🌟
+    Your special day is almost here, Sheela! 🌟
   </div>
 
   <script>
+    // Set birthday date (July 13, 2025)
     const birthdayDate = new Date('2025-07-13T00:00:00').getTime();
     let countdownEnded = false;
 
@@ -247,6 +218,7 @@
       if (distance < 0) {
         document.getElementById('countdown').innerHTML = '<div class="time-up">🎉 It\'s Your Birthday! 🎉</div>';
         document.getElementById('message').innerHTML = 'Click the gift box to unwrap your surprise! 💖';
+        document.getElementById('giftBox').classList.add('shake');
         countdownEnded = true;
         return;
       }
@@ -256,23 +228,43 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById('countdown').textContent =
+      document.getElementById('countdown').innerHTML = 
         `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
     function openGift() {
       if (countdownEnded) {
-        window.location.href = 'birthday.html';
+        // Redirect to the birthday page
+        window.location.href = 'birthday.html'; // Change this to your birthday page filename
       } else {
-        document.getElementById('message').textContent = 'Not yet, my love! Wait for your special day 😌💕';
+        // Tease them if they try to open early
+        document.getElementById('message').innerHTML = 'Not yet, my love! Wait for your special day 😉💕';
         setTimeout(() => {
-          document.getElementById('message').textContent = 'Your special day is almost here, Sheela! 🌟';
+          document.getElementById('message').innerHTML = 'Your special day is almost here, Paapa kutty! 🌟';
         }, 3000);
       }
     }
 
+    // Create sparkles
+    function createSparkles() {
+      const sparklesContainer = document.querySelector('.sparkles');
+      for (let i = 0; i < 50; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        sparkle.style.left = Math.random() * 100 + '%';
+        sparkle.style.top = Math.random() * 100 + '%';
+        sparkle.style.width = Math.random() * 4 + 2 + 'px';
+        sparkle.style.height = sparkle.style.width;
+        sparkle.style.animationDelay = Math.random() * 3 + 's';
+        sparklesContainer.appendChild(sparkle);
+      }
+    }
+
+    // Initialize
     updateCountdown();
     setInterval(updateCountdown, 1000);
+    createSparkles();
   </script>
+
 </body>
 </html>
