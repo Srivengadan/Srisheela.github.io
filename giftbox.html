@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Something Special Awaits... 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Quicksand', sans-serif;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      color: #fff;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+      z-index: 3;
+      position: relative;
+    }
+
+    .countdown {
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 10px 0 30px;
+      color: #ffeb3b;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+      z-index: 3;
+      position: relative;
+    }
+
+    .gift-container {
+      perspective: 1000px;
+    }
+
+    .gift-box {
+      width: 200px;
+      height: 200px;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateX(15deg) rotateY(15deg);
+      animation: rotateGift 8s linear infinite;
+      cursor: pointer;
+    }
+
+    @keyframes rotateGift {
+      from { transform: rotateX(10deg) rotateY(0); }
+      to { transform: rotateX(10deg) rotateY(360deg); }
+    }
+
+    .face {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: #dc2626;
+      border: 2px solid #a10000;
+    }
+
+    .front  { transform: translateZ(100px); }
+    .back   { transform: rotateY(180deg) translateZ(100px); }
+    .right  { transform: rotateY(90deg) translateZ(100px); }
+    .left   { transform: rotateY(-90deg) translateZ(100px); }
+    .top    { transform: rotateX(90deg) translateZ(100px); }
+    .bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+    /* Ribbons - Horizontal and Vertical Wrapping */
+    .ribbon-h, .ribbon-v {
+      position: absolute;
+      background: #fbbf24;
+      box-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
+      animation: shimmer 2s linear infinite;
+    }
+
+    /* Horizontal */
+    .ribbon-h {
+      height: 20px;
+      width: 200px;
+      top: 90px;
+      left: 0;
+    }
+
+    /* Vertical */
+    .ribbon-v {
+      width: 20px;
+      height: 200px;
+      top: 0;
+      left: 90px;
+    }
+
+    .front .ribbon-h, .front .ribbon-v { background: #fcd34d; }
+    .back .ribbon-h, .back .ribbon-v { background: #facc15; }
+    .left .ribbon-h, .left .ribbon-v { background: #fbbf24; }
+    .right .ribbon-h, .right .ribbon-v { background: #f59e0b; }
+    .top .ribbon-h, .top .ribbon-v { background: #fcd34d; }
+    .bottom .ribbon-h, .bottom .ribbon-v { background: #fbbf24; }
+
+    /* Bow */
+    .bow {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 60px;
+      z-index: 10;
+      filter: drop-shadow(0 0 8px gold) drop-shadow(0 0 20px #fff);
+    }
+
+    .bow-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 28px;
+      height: 45px;
+      background: #d97706;
+      border-radius: 8px;
+      box-shadow:
+        0 8px 20px rgba(0,0,0,0.5),
+        inset 4px 4px 10px rgba(255,255,255,0.4),
+        inset -4px -4px 10px rgba(0,0,0,0.4);
+    }
+
+    .bow-left, .bow-right {
+      position: absolute;
+      top: 8px;
+      width: 42px;
+      height: 35px;
+      background: #fbbf24;
+      border-radius: 50% 25% 50% 50%;
+      box-shadow:
+        0 10px 25px rgba(0,0,0,0.4),
+        inset 3px 3px 12px rgba(255,255,255,0.5),
+        inset -3px -3px 12px rgba(0,0,0,0.3);
+    }
+
+    .bow-left {
+      left: -10px;
+      transform: rotate(-20deg);
+    }
+
+    .bow-right {
+      right: -10px;
+      transform: rotate(20deg) scaleX(-1);
+    }
+
+    /* Shimmer animation */
+    @keyframes shimmer {
+      0% { filter: brightness(1); }
+      50% { filter: brightness(1.2); }
+      100% { filter: brightness(1); }
+    }
+
+    .message {
+      font-size: 1.3rem;
+      margin-top: 30px;
+      color: #fff;
+      opacity: 0.9;
+      z-index: 3;
+      font-weight: 300;
+    }
+
+    @media (max-width: 600px) {
+      .gift-box {
+        width: 150px;
+        height: 150px;
+      }
+      .face {
+        width: 150px;
+        height: 150px;
+      }
+      .ribbon-h { width: 150px; top: 65px; }
+      .ribbon-v { height: 150px; left: 65px; }
+      .bow {
+        width: 80px;
+        height: 50px;
+        top: -40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Something Special Awaits... 💖</h1>
+  <div class="countdown" id="countdown">Loading...</div>
+
+  <div class="gift-container">
+    <div class="gift-box" id="giftBox" onclick="openGift()">
+      <!-- 6 Faces -->
+      <div class="face front">
+        <div class="ribbon-h"></div>
+        <div class="ribbon-v"></div>
+      </div>
+      <div class="face back">
+        <div class="ribbon-h"></div>
+        <div class="ribbon-v"></div>
+      </div>
+      <div class="face left">
+        <div class="ribbon-h"></div>
+        <div class="ribbon-v"></div>
+      </div>
+      <div class="face right">
+        <div class="ribbon-h"></div>
+        <div class="ribbon-v"></div>
+      </div>
+      <div class="face top">
+        <div class="ribbon-h"></div>
+        <div class="ribbon-v"></div>
+      </div>
+      <div class="face bottom">
+        <div class="ribbon-h"></div>
+        <div class="ribbon-v"></div>
+      </div>
+
+      <!-- Bow -->
+      <div class="bow">
+        <div class="bow-left"></div>
+        <div class="bow-center"></div>
+        <div class="bow-right"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="message" id="message">
+    Your special day is almost here, Paapa kutty! 🌟
+  </div>
+
+  <script>
+    const birthdayDate = new Date('2025-07-13T00:00:00').getTime();
+    let countdownEnded = false;
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = birthdayDate - now;
+
+      if (distance < 0) {
+        document.getElementById('countdown').innerHTML = '<div class="time-up">🎉 It\'s Your Birthday! 🎉</div>';
+        document.getElementById('message').innerHTML = 'Click the gift box to unwrap your surprise! 💖';
+        countdownEnded = true;
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('countdown').textContent =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    function openGift() {
+      if (countdownEnded) {
+        window.location.href = 'birthday.html';
+      } else {
+        document.getElementById('message').textContent = 'Not yet, my love! Wait for your special day 😌💕';
+        setTimeout(() => {
+          document.getElementById('message').textContent = 'Your special day is almost here, Sheela! 🌟';
+        }, 3000);
+      }
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
