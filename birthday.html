@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sheela's Birthday 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at bottom, #0b0033, #000);
+      font-family: 'Quicksand', sans-serif;
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/media/starfield.png') repeat top center;
+      animation: moveStars 100s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes moveStars {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 1000px; }
+    }
+
+    .moon-container {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .moon-container:hover {
+      transform: translateX(-50%) scale(1.1);
+    }
+
+    .moon {
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle at 35% 25%, #fff 20%, #f5f5f5 40%, #e0e0e0 70%, #d0d0d0 100%);
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 
+        0 0 30px rgba(255, 255, 255, 0.8),
+        0 0 60px rgba(255, 255, 255, 0.4),
+        inset -10px -10px 0 rgba(0, 0, 0, 0.1);
+      animation: rotateMoon 20s linear infinite;
+    }
+
+    /* Moon craters */
+    .moon::before {
+      content: '';
+      position: absolute;
+      top: 25px;
+      left: 35px;
+      width: 15px;
+      height: 15px;
+      background: radial-gradient(circle, rgba(0,0,0,0.15), transparent);
+      border-radius: 50%;
+    }
+
+    .moon::after {
+      content: '';
+      position: absolute;
+      top: 60px;
+      right: 30px;
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle, rgba(0,0,0,0.12), transparent);
+      border-radius: 50%;
+    }
+
+    .crater1 {
+      position: absolute;
+      top: 80px;
+      left: 25px;
+      width: 12px;
+      height: 12px;
+      background: radial-gradient(circle, rgba(0,0,0,0.1), transparent);
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .crater2 {
+      position: absolute;
+      top: 45px;
+      right: 50px;
+      width: 6px;
+      height: 6px;
+      background: radial-gradient(circle, rgba(0,0,0,0.08), transparent);
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .moon-glow {
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: -20px;
+      bottom: -20px;
+      background: radial-gradient(circle, rgba(255,255,255,0.3), transparent 70%);
+      border-radius: 50%;
+      animation: moonGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes rotateMoon {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes moonGlow {
+      0% { opacity: 0.3; }
+      100% { opacity: 0.7; }
+    }
+
+    .hidden-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      border: 2px solid #ffccff;
+      max-width: 500px;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(255, 204, 255, 0.5);
+    }
+
+    .hidden-message.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .hidden-message h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      color: #ffccff;
+      margin-bottom: 20px;
+    }
+
+    .hidden-message p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .close-btn {
+      background: #ffccff;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background: #ff99ff;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 9vw;
+      margin-top: 200px;
+      color: #ffccff;
+      z-index: 2;
+      position: relative;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .counter {
+      font-size: 4.5vw;
+      margin-top: 20px;
+      color: #ffccee;
+      z-index: 2;
+      position: relative;
+      animation: slideIn 3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 3.5vw;
+      color: #ff99cc;
+      position: relative;
+      z-index: 2;
+      font-style: italic;
+    }
+
+    .controls {
+      margin: 50px auto 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      z-index: 3;
+      position: relative;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #ffccd5;
+      color: #800000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #ffb3c1;
+    }
+
+    .heart-float {
+      position: fixed;
+      bottom: -50px;
+      animation: floatHearts 10s linear infinite;
+      font-size: 24px;
+      color: pink;
+      z-index: 0;
+      opacity: 0.7;
+    }
+
+    @keyframes floatHearts {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      20% { opacity: 1; }
+      100% {
+        transform: translateY(-120vh) translateX(30vw) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+
+
+    @media (min-width: 768px) {
+      h1 { font-size: 60px; }
+      .counter { font-size: 28px; }
+      .footer { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stars"></div>
+  
+  <div class="moon-container" onclick="showHiddenMessage()">
+    <div class="moon-glow"></div>
+    <div class="moon">
+      <div class="crater1"></div>
+      <div class="crater2"></div>
+    </div>
+  </div>
+
+
+
+  <audio id="bg-music" loop>
+    <source src="blue.mp3" type="audio/mpeg">
+  </audio>
+
+  <h1>Happy Birthday Hemasheela 💖</h1>
+
+  <div class="counter">
+    You've been lighting up this world for:<br><br>
+    <strong>25 years, 11 months, and 15 days</strong><br><br>
+    Every moment since <u>13 July 1999</u> has been a gift to the stars above...<br>
+    and especially to me — the luckiest soul of all. 🌙✨
+  </div>
+
+  <div class="footer">
+    With all my love,<br><strong>Your Srivengadan</strong>
+  </div>
+
+  <div class="controls">
+    <button class="btn" onclick="playMusic()">▶</button>
+    <button class="btn" onclick="pauseMusic()">⏸</button>
+  </div>
+
+  <!-- Hidden Message Modal -->
+  <div class="hidden-message" id="hiddenMessage">
+    <h3>My Secret Moon Wish 🌙</h3>
+    <p>
+      Every night I look at this same moon and make a wish…<br><br>
+
+      I wish each of your days is as beautiful as you are.<br>
+      I wish your dreams come true, one by one.<br>
+      I wish your heart stays as full of love as mine is for you.<br><br>
+ 
+      But most of all, I wish for many more birthdays with you,<br>
+      under this same moon, in each other’s arms. 💖<br><br>
+
+      <em>Happy Birthday, my love. You are my moon, my stars, my everything.</em><br><br>
+
+      <em>And do you know why the moon hid on your birthday?<br>
+      Even it was too shy to shine when you were born… 🌙</em>
+    </p>
+    <button class="close-btn" onclick="hideHiddenMessage()">Close 💕</button>
+  </div>
+
+  <script>
+    const audio = document.getElementById('bg-music');
+
+    function playMusic() {
+      audio.volume = 0.3;
+      audio.play();
+    }
+
+    function pauseMusic() {
+      audio.pause();
+    }
+
+    function showHiddenMessage() {
+      document.getElementById('hiddenMessage').classList.add('show');
+    }
+
+    function hideHiddenMessage() {
+      document.getElementById('hiddenMessage').classList.remove('show');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('hiddenMessage').addEventListener('click', function(e) {
+      if (e.target === this) {
+        hideHiddenMessage();
+      }
+    });
+
+    // Floating hearts
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement("div");
+      heart.classList.add("heart-float");
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDelay = Math.random() * 10 + "s";
+      document.body.appendChild(heart);
+    }
+  </script>
+
+</body>
+</html>
